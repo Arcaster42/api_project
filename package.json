@@ -1,0 +1,12 @@
+{
+  "name": "api_project",
+  "version": "1.0.0",
+  "description": "MVP API",
+  "main": "index.js",
+  "repository": "https://arcaster42@github.com/arcaster42/api_project.git",
+  "author": "TJ Epperson <tj.epperson070@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
