@@ -1,0 +1,1 @@
+INSERT INTO roles VALUES (DEFAULT, 'Tank', 'Aggro control');
