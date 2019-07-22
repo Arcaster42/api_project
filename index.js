@@ -17,6 +17,8 @@ const knex = require('knex')({
     }
 })
 
+module.exports = knex
+
 //Routes
 app.use(require('./routes/root'))
 
