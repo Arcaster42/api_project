@@ -11,7 +11,7 @@ const knex = require('knex')({
     client: 'pg',
     connection: {
         host: '127.0.0.1',
-        user: 'admin',
+        user: 'arcaster',
         password: 'admin',
         database: 'api_project'
     }
