@@ -3,6 +3,7 @@ html
     head
         style
             include ../style/style.css
+        script(src="../scripts/signup.js")
     body
         h1 Final Fantasy 14 API
         br
@@ -19,11 +20,11 @@ html
             br
             label(for="password") Password
             br
-            input(type="password" name="password")
+            input#p1(type="password" name="password" onkeyup="checkPass()")
             br
-            label(for="password_v") Password
+            label#lbl(for="password_v") Password
             br
-            input(type="password" name="password_v")
+            input#p2(type="password" name="password_v" onkeyup="checkPass()")
             br
-            input.btn(type="submit" value="Signup")
+            input.btn(type="submit" value="Signup" onclick="return isValid()")
             br
