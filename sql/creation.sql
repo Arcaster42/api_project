@@ -22,6 +22,7 @@ CREATE TABLE skills (
     id SERIAL PRIMARY KEY,
     title VARCHAR,
     style VARCHAR,
+    skilltype VARCHAR,
     info TEXT,
     icon TEXT,
     job INTEGER REFERENCES jobs(id)
