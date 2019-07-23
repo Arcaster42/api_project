@@ -6,6 +6,7 @@ CREATE TABLE users (
     username VARCHAR PRIMARY KEY,
     email VARCHAR,
     pw_hash VARCHAR NOT NULL,
+    api_key TEXT,
     can_put BOOLEAN,
     can_patch BOOLEAN,
     can_delete BOOLEAN
