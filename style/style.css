@@ -37,3 +37,26 @@ label {
 input:hover {
     background-color: lightblue;
 }
+
+.postblock {
+    border: 2px solid black;
+    display: block;
+    margin: auto;
+    padding: 10px;
+    text-align: left;
+    width: 50%;
+}
+
+.replyblock {
+    border: 2px solid black;
+    display: block;
+    margin: left;
+    padding: 6px;
+    text-align: left;
+    width: 80%;
+}
+
+.title, .author {
+    margin: 0px;
+    padding: 2px;
+}
