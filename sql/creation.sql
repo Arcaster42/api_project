@@ -1,7 +1,17 @@
 --Create DB
 CREATEDB api_project;
 
---Create role table
+--Create users table
+CREATE TABLE users (
+    username VARCHAR PRIMARY KEY,
+    email VARCHAR,
+    pw_hash VARCHAR NOT NULL,
+    can_put BOOLEAN,
+    can_patch BOOLEAN,
+    can_delete BOOLEAN
+);
+
+--Create roles table
 CREATE TABLE roles (
     id SERIAL PRIMARY KEY,
     title VARCHAR,
