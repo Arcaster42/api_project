@@ -29,4 +29,8 @@ VALUES
 --Insert skills
 INSERT INTO skills
 VALUES
-(DEFAULT, )
+(DEFAULT, 'Fast Blade', 'Melee', 'Physical Attack', 'Combo starter', NULL, NULL),
+(DEFAULT, 'Riot Blade', 'Melee', 'Physical Attack', 'Combo continuation', NULL, NULL),
+(DEFAULT, 'Royal Authority', 'Melee', 'Physical Attack', 'Combo finisher', NULL, NULL),
+(DEFAULT, 'Total Eclipse', 'Melee AoE', 'Physical Attack', 'Combo starter', NULL, NULL),
+(DEFAULT, 'Prominence', 'Melee AoE', 'Physical Attack', 'Combo finisher', NULL, NULL);
