@@ -1,0 +1,39 @@
+html {
+    background-color: rgb(245, 240, 240);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+h1, h2 {
+    display: block;
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+}
+
+.login {
+    background-color: snow;
+    border: 2px solid black;
+    display: block;
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+    width: 20%;
+}
+
+label {
+    font-size: large;
+}
+
+.btn {
+    border: none;
+    background-color: lightgrey;
+    font-size: medium;
+    font-weight: bold;
+    margin: 8px;
+    padding: 8px;
+    width: 160px;
+}
+
+input:hover {
+    background-color: lightblue;
+}
