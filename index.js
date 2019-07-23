@@ -18,18 +18,13 @@ const knex = require('knex')({
     }
 })
 
-/* knex.schema.createTable('roles', (table) => {
-    table.increments('id')
-    table.string('name')
-    table.string('info')
-})
-.then(() => knex.select().from('roles')) */
 knex('roles').then((rows) => console.log(rows))
 
 module.exports = knex
 
 //Routes
 app.use(require('./routes/root'))
+app.use(require('./routes/api'))
 
 //Server Start
 app.listen(port, () => console.log(`Listening on ${port}`))
