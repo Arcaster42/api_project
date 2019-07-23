@@ -1,0 +1,29 @@
+doctype html
+html
+    head
+        style
+            include ../style/style.css
+    body
+        h1 Final Fantasy 14 API
+        br
+        h2 Signup
+        br
+        form.login(action="/signup" method="post" enctype="multipart/form-data")
+            label(for="username") Username
+            br
+            input(type="text" name="username")
+            br
+            label(for="email") Email
+            br
+            input(type="email" name="email")
+            br
+            label(for="password") Password
+            br
+            input(type="password" name="password")
+            br
+            label(for="password_v") Password
+            br
+            input(type="password" name="password_v")
+            br
+            input.btn(type="submit" value="Signup")
+            br
