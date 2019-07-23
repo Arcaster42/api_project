@@ -32,4 +32,7 @@ VALUES
 invoke the function! Or something like that. Google it.', '2019-07-23'),
 (DEFAULT, 1, 'randomcoder9',
 'Only horrible, terrible people even use npm. Use yarn you cretin.', 
-'2019-07-23');
+'2019-07-23'),
+(DEFAULT, 2, 'jsdev14',
+'CSS was made by the CIA in an experiment to see how much punishment 
+a single human would bring upon themself. Back-end for life!');
