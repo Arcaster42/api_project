@@ -12,7 +12,8 @@ CREATE TABLE roles (
 CREATE TABLE jobs (
     id SERIAL PRIMARY KEY,
     title VARCHAR,
-    roletype VARCHAR REFERENCES roles(id),
+    roletype INTEGER REFERENCES roles(id),
+    style VARCHAR,
     info TEXT
 );
 
@@ -20,7 +21,8 @@ CREATE TABLE jobs (
 CREATE TABLE skills (
     id SERIAL PRIMARY KEY,
     title VARCHAR,
+    style VARCHAR,
     info TEXT,
     icon TEXT,
-    job VARCHAR REFERENCES jobs(id)
+    job INTEGER REFERENCES jobs(id)
 );
