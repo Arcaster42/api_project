@@ -20,8 +20,8 @@ CREATE TABLE topics (
 --Create posts table
 CREATE TABLE posts (
     id SERIAL PRIMARY KEY,
-    author VARCHAR FOREIGN KEY REFERENCES users(username),
-    topic VARCHAR FOREIGN KEY REFERENCES topics(topic),
+    author VARCHAR REFERENCES users(username),
+    topic VARCHAR REFERENCES topics(topic),
     title VARCHAR,
     content TEXT,
     stamp DATE
@@ -30,8 +30,8 @@ CREATE TABLE posts (
 --Create replies table
 CREATE TABLE replies (
     id SERIAL PRIMARY KEY,
-    parent INTEGER FOREIGN KEY REFERENCES posts(id),
-    author VARCHAR FOREIGN KEY REFERENCES users(username),
+    parent INTEGER REFERENCES posts(id),
+    author VARCHAR REFERENCES users(username),
     content TEXT,
     stamp DATE
 );

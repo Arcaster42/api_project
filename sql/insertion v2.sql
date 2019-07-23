@@ -1,9 +1,9 @@
 --Insert users
 INSERT INTO users
 VALUES
-('jsdev14', 'jsdev14@gmail.com', 'na', 'na', false, false, false),
-('supercat7', 'supercat7@gmail.com', 'na', 'na'),
-('randomcoder9', 'randomcoder9@gmail.com', 'na', 'na');
+('jsdev14', 'jsdev14@gmail.com', 'na'),
+('supercat7', 'supercat7@gmail.com', 'na'),
+('randomcoder9', 'randomcoder9@gmail.com', 'na');
 
 --Insert topics
 INSERT INTO topics
