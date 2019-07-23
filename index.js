@@ -25,6 +25,7 @@ module.exports = {knex}
 app.use(require('./routes/root'))
 app.use(require('./routes/signup'))
 app.use(require('./routes/api'))
+app.use(require('./routes/board'))
 
 //Server Start
 app.listen(port, () => console.log(`Listening on ${port}`))
