@@ -17,8 +17,8 @@ const knex = require('knex')({
         port: 5432
     }
 })
-
-knex('roles').then((rows) => console.log(rows))
+const {Model} = require('objection')
+Model.knex(knex)
 
 module.exports = knex
 
