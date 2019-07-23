@@ -1,11 +1,15 @@
 const express = require('express')
 const router = express()
 const knex = require('../index.js')
+const {Model} = require('../index.js')
 
 router.get('/api/roles', (req, res) => {
-    let query = knex.select().from('roles')
-    console.log(query)
-    res.send(query)
+    let result;
+    knex('roles')
+    .then((results) => {
+        result = JSON.stringify(results)
+        res.send(result)
+    })
 })
 
 module.exports = router
