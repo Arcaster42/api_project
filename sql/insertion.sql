@@ -25,3 +25,8 @@ VALUES
 (DEFAULT, 'Black Mage', 'Ranged', 3, 'Extreme damage, low mobility, moderate sustain'),
 (DEFAULT, 'Summoner', 'Ranged', 3, 'High damage, extreme burst, good utiltiy'),
 (DEFAULT, 'Red Mage', 'Ranged', 3, 'High damage, intuitive combos, good utility');
+
+--Insert skills
+INSERT INTO skills
+VALUES
+(DEFAULT, )
