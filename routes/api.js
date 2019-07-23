@@ -1,10 +1,11 @@
 const express = require('express')
 const router = express()
 const knex = require('../index.js')
+const db = knex.knex
 
-router.get('/api/roles', (req, res) => {
+router.get('/api/posts', (req, res) => {
     let result;
-    knex('roles')
+    db('posts')
     .then((results) => {
         result = JSON.stringify(results)
         res.send(result)
