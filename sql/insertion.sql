@@ -33,4 +33,6 @@ VALUES
 (DEFAULT, 'Riot Blade', 'Melee', 'Physical Attack', 'Combo continuation', NULL, NULL),
 (DEFAULT, 'Royal Authority', 'Melee', 'Physical Attack', 'Combo finisher', NULL, NULL),
 (DEFAULT, 'Total Eclipse', 'Melee AoE', 'Physical Attack', 'Combo starter', NULL, NULL),
-(DEFAULT, 'Prominence', 'Melee AoE', 'Physical Attack', 'Combo finisher', NULL, NULL);
+(DEFAULT, 'Prominence', 'Melee AoE', 'Physical Attack', 'Combo finisher', NULL, NULL),
+(DEFAULT, 'Fight of Flight', 'Damage Increase', 'Buff', '25% damage increase', NULL, NULL),
+(DEFAULT, 'Sheltron', 'Damage Mitigation', 'Buff', '6-second all-block', NULL, NULL);
