@@ -23,9 +23,18 @@ function appendPosts() {
         const content = document.createElement('p')
         content.className = 'content'
         content.innerText = post.content
+        const replybutton = document.createElement('input')
+        replybutton.className = 'btn'
+        replybutton.value = 'Reply'
+        replybutton.type = 'button'
+        replybutton.onclick = function() {startReply(post.id)}
+        const replyzone = document.createElement('p')
+        replyzone.className = `replyzone ${post.id}`
         postblock.appendChild(title)
         postblock.appendChild(author)
         postblock.appendChild(content)
+        postblock.appendChild(replybutton)
+        postblock.appendChild(replyzone)
         postdiv.appendChild(postblock)
     }
     appendReplies()
@@ -46,4 +55,42 @@ function appendReplies() {
         const target = document.getElementsByClassName(reply.parent)[0]
         target.appendChild(replyblock)
     }
+}
+
+function startReply(id) {
+    closeReply()
+    const parentblock = document.getElementsByClassName(id)[1]
+    const replyblock = document.createElement('div')
+    replyblock.className = 'reply'
+    const box = document.createElement('textarea')
+    box.className = 'txt reply'
+    box.type = 'text'
+    box.style.height = '50px'
+    box.style.width = '400px'
+    const spacer = document.createElement('br')
+    spacer.className = 'reply'
+    const submitbutton = document.createElement('input')
+    submitbutton.className = 'btn reply'
+    submitbutton.value = 'Submit'
+    submitbutton.type = 'button'
+    submitbutton.onclick = function() {submitReply(box.value)}
+    const cancelbutton = document.createElement('input')
+    cancelbutton.className = 'btn reply'
+    cancelbutton.value = 'Cancel'
+    cancelbutton.type = 'button'
+    cancelbutton.onclick = function() {closeReply()}
+    replyblock.appendChild(box)
+    replyblock.appendChild(spacer)
+    replyblock.appendChild(submitbutton)
+    replyblock.appendChild(cancelbutton)
+    parentblock.append(replyblock)
+}
+
+function submitReply() {
+    //TODO
+}
+
+function closeReply() {
+    const replyelements = document.getElementsByClassName('reply')
+    for (let element of replyelements) element.parentNode.removeChild(element)
 }
