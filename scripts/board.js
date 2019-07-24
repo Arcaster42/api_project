@@ -1,3 +1,7 @@
+const moment = require('moment')
+const knex = require('../index')
+const db = knex.knex
+
 let posts;
 fetch('/api/posts')
 .then((res) => {return res.json()})
@@ -73,7 +77,7 @@ function startReply(id) {
     submitbutton.className = 'btn reply'
     submitbutton.value = 'Submit'
     submitbutton.type = 'button'
-    submitbutton.onclick = function() {submitReply(box.value)}
+    submitbutton.onclick = function() {submitReply(id, box.value)}
     const cancelbutton = document.createElement('input')
     cancelbutton.className = 'btn reply'
     cancelbutton.value = 'Cancel'
@@ -86,8 +90,14 @@ function startReply(id) {
     parentblock.append(replyblock)
 }
 
-function submitReply() {
-    //TODO
+function submitReply(parent, author, content) {
+    const time = moment()
+    db('replies')
+    .insert({
+        parent: parent,
+        author: author,
+        content: content,
+        time: time})
 }
 
 function closeReply() {
