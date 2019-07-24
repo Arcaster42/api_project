@@ -1,6 +1,6 @@
-const moment = require('moment')
+/* const moment = require('moment')
 const knex = require('../index')
-const db = knex.knex
+const db = knex.knex */
 
 let posts;
 fetch('/api/posts')
@@ -12,6 +12,16 @@ fetch('/api/replies')
 .then((res) => {return res.json()})
 .then((data) => {replies = data})
 .then(() => {appendPosts()})
+
+function refetch() {
+    fetch('/api/posts')
+    .then((res) => {return res.json()})
+    .then((data) => {posts = data})
+    fetch('/api/replies')
+    .then((res) => {return res.json()})
+    .then((data) => {replies = data})
+    .then(() => {appendPosts()})
+}
 
 function appendPosts() {
     const postdiv = document.getElementById('postdiv')
@@ -64,25 +74,42 @@ function appendReplies() {
 function startReply(id) {
     closeReply()
     const parentblock = document.getElementsByClassName(id)[1]
-    const replyblock = document.createElement('div')
+    const replyblock = document.createElement('form')
     replyblock.className = 'reply'
+    replyblock.id = 'replyform'
+    replyblock.setAttribute('method', 'post')
+    replyblock.setAttribute('action', '/reply')
+    replyblock.setAttribute('enctype', 'multipart/form-data')
+    const hiddenparent = document.createElement('input')
+    hiddenparent.className = 'reply'
+    hiddenparent.type = 'hidden'
+    hiddenparent.value = id
+    hiddenparent.setAttribute('name', 'parent_hid')
+    const hiddenauthor = document.createElement('input')
+    hiddenauthor.classname = 'reply'
+    hiddenauthor.type = 'hidden'
+    hiddenauthor.value = 'FIX ME TO USERNAME'
+    hiddenauthor.setAttribute('name', 'author_hid')
     const box = document.createElement('textarea')
     box.className = 'txt reply'
     box.type = 'text'
     box.style.height = '50px'
     box.style.width = '400px'
+    box.setAttribute('name', 'content')
     const spacer = document.createElement('br')
     spacer.className = 'reply'
     const submitbutton = document.createElement('input')
     submitbutton.className = 'btn reply'
     submitbutton.value = 'Submit'
     submitbutton.type = 'button'
-    submitbutton.onclick = function() {submitReply(id, box.value)}
+    submitbutton.onclick = function() {submitReply(id, 'FIX ME', box.value)}
     const cancelbutton = document.createElement('input')
     cancelbutton.className = 'btn reply'
     cancelbutton.value = 'Cancel'
     cancelbutton.type = 'button'
     cancelbutton.onclick = function() {closeReply()}
+    replyblock.appendChild(hiddenauthor)
+    replyblock.appendChild(hiddenparent)
     replyblock.appendChild(box)
     replyblock.appendChild(spacer)
     replyblock.appendChild(submitbutton)
@@ -91,16 +118,40 @@ function startReply(id) {
 }
 
 function submitReply(parent, author, content) {
-    const time = moment()
+    /* const time = moment()
     db('replies')
     .insert({
         parent: parent,
         author: author,
         content: content,
         time: time})
+    .then(() => {
+        appendReply(parent, author, content)
+    }) */
+    //appendReply(parent, author, content)
+    const form = document.getElementById('replyform')
+    form.append('parent', parent)
+    form.append('author', author)
+    form.submit()
+    //document.getElementById('replyform').submit()
 }
 
 function closeReply() {
     const replyelements = document.getElementsByClassName('reply')
     for (let element of replyelements) element.parentNode.removeChild(element)
+}
+
+function appendReply(parent, author, content) {
+    const replyblock = document.createElement('div')
+    replyblock.className = `replyblock ${parent}`
+    const authorChild = document.createElement('p')
+    authorChild.className = 'author'
+    authorChild.innerText = author
+    const contentChild = document.createElement('p')
+    contentChild.className = 'content'
+    contentChild.innerText = content
+    replyblock.appendChild(authorChild)
+    replyblock.appendChild(contentChild)
+    const target = document.getElementsByClassName(parent)[0]
+    target.appendChild(replyblock)
 }
