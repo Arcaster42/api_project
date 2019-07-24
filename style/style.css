@@ -34,6 +34,21 @@ label {
     width: 160px;
 }
 
+.btn.reply {
+    display: inline;
+    margin: 4px;
+    padding: 4px;
+    width: 80px;
+}
+
+.btn:hover {
+    background-color: slategrey;
+}
+
+.btn:active {
+    background-color: lightgrey;
+}
+
 input:hover {
     background-color: lightblue;
 }
