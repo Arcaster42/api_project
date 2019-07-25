@@ -34,7 +34,7 @@ label {
     width: 160px;
 }
 
-.btn.reply {
+.btn.reply, .btn.post {
     display: inline;
     margin: 4px;
     padding: 4px;
@@ -78,7 +78,7 @@ input:hover {
     width: 50%;
 }
 
-.newtitle, .newtopic {
+.newtitle, .newtopic, .newtext {
     margin-bottom: 6px;
     margin-top: 6px;
 }
