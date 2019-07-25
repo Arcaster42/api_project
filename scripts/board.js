@@ -150,7 +150,6 @@ function startPost() {
 }
 
 function submitPost(author, topic, content) {
-    console.log(topic)
     const form = document.getElementById('postform')
     form.append('author', author)
     form.submit()
