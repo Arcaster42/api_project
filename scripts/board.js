@@ -13,7 +13,7 @@ let replies;
     })
 })()
 
-function fetch() {
+function fetchData() {
     fetch('/api/posts')
     .then((res) => {return res.json()})
     .then((data) => {posts = data})
