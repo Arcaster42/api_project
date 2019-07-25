@@ -10,14 +10,14 @@ router.post('/reply', upload.none(), (req, res) => {
     const parent = req.body.parent_hid
     const author = req.body.author_hid
     const content = req.body.content
-    const stamp = moment().format('YYYY-MM-DD')
+    const date = moment().format('YYYY-MM-DD')
     const time = moment().format('HH:MM A')
     db('replies')
     .insert({
         parent: parent,
         author: 'jsdev14',
         content: content,
-        stamp: stamp,
+        date: date,
         time: time})
     .then(() => {
         console.log('inserted into DB')

@@ -37,6 +37,9 @@ function appendPosts() {
         const content = document.createElement('p')
         content.className = 'content'
         content.innerText = post.content
+        const stamp = document.createElement('span')
+        stamp.className = 'stamp'
+        //stamp.innerText = ``
         const replybutton = document.createElement('input')
         replybutton.className = 'btn'
         replybutton.value = 'Reply'
@@ -61,10 +64,14 @@ function appendReplies() {
         const author = document.createElement('p')
         author.className = 'author'
         author.innerText = reply.author
+        const stamp = document.createElement('span')
+        stamp.className = 'stamp'
+        stamp.innerText = `${reply.time}   ${reply.date}`
         const content = document.createElement('p')
         content.className = 'content'
         content.innerText = reply.content
         replyblock.appendChild(author)
+        replyblock.appendChild(stamp)
         replyblock.appendChild(content)
         const target = document.getElementsByClassName(reply.parent)[0]
         target.appendChild(replyblock)
@@ -118,22 +125,10 @@ function startReply(id) {
 }
 
 function submitReply(parent, author, content) {
-    /* const time = moment()
-    db('replies')
-    .insert({
-        parent: parent,
-        author: author,
-        content: content,
-        time: time})
-    .then(() => {
-        appendReply(parent, author, content)
-    }) */
-    //appendReply(parent, author, content)
     const form = document.getElementById('replyform')
     form.append('parent', parent)
     form.append('author', author)
     form.submit()
-    //document.getElementById('replyform').submit()
 }
 
 function closeReply() {
