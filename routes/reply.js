@@ -22,7 +22,8 @@ router.post('/reply', upload.none(), (req, res) => {
     .then(() => {
         console.log('inserted into DB')
     })
-    res.send(`Parent: ${parent}, Author: ${author}, Content: ${content}`)
+    .then(() => res.redirect('/board'))
+    .catch((err) => res.send(err))
 })
 
 module.exports = router
