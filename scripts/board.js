@@ -13,14 +13,16 @@ let replies;
     })
 })()
 
-function refetch() {
+function fetch() {
     fetch('/api/posts')
     .then((res) => {return res.json()})
     .then((data) => {posts = data})
-    fetch('/api/replies')
-    .then((res) => {return res.json()})
-    .then((data) => {replies = data})
-    .then(() => {appendPosts()})
+    .then(() => {
+        fetch('/api/replies')
+        .then((res) => {return res.json()})
+        .then((data) => {replies = data})
+        .then(() => {appendPosts()})
+    })
 }
 
 function appendPosts() {
