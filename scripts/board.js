@@ -5,7 +5,10 @@ let topics
 ;(document.onload = function() {
     fetch('/api/posts')
     .then((res) => {return res.json()})
-    .then((data) => {posts = data})
+    .then((data) => {
+        posts = data
+        posts = posts.reverse()
+    })
     .then(() => {
         fetch('/api/replies')
         .then((res) => {return res.json()})
@@ -129,7 +132,7 @@ function startPost() {
     submitbutton.className = 'btn post'
     submitbutton.value = 'Submit'
     submitbutton.type = 'button'
-    submitbutton.onclick = function() {submitReply(id, 'FIX ME', box.value)}
+    submitbutton.onclick = function() {submitPost('FIX ME', box.value)}
     const cancelbutton = document.createElement('input')
     cancelbutton.className = 'btn post'
     cancelbutton.value = 'Cancel'
@@ -145,7 +148,7 @@ function startPost() {
     anchor.appendChild(postblock)
 }
 
-function submitPost(parent, author, content) {
+function submitPost(author, content) {
     const form = document.getElementById('postform')
     form.append('author', author)
     form.submit()
