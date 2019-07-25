@@ -27,6 +27,7 @@ app.use(require('./routes/signup'))
 app.use(require('./routes/api'))
 app.use(require('./routes/board'))
 app.use(require('./routes/reply'))
+app.use(require('./routes/post'))
 
 //Server Start
 app.listen(port, () => console.log(`Listening on ${port}`))
