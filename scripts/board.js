@@ -5,11 +5,12 @@ let replies;
     fetch('/api/posts')
     .then((res) => {return res.json()})
     .then((data) => {posts = data})
-
-    fetch('/api/replies')
-    .then((res) => {return res.json()})
-    .then((data) => {replies = data})
-    .then(() => {appendPosts()})
+    .then(() => {
+        fetch('/api/replies')
+        .then((res) => {return res.json()})
+        .then((data) => {replies = data})
+        .then(() => {appendPosts()})
+    })
 })()
 
 function refetch() {
@@ -76,6 +77,12 @@ function appendReplies() {
         const target = document.getElementsByClassName(reply.parent)[0]
         target.appendChild(replyblock)
     }
+    const buttonblock = document.getElementById('newbtndiv')
+    const newbtn = document.createElement('input')
+    newbtn.className = 'btn'
+    newbtn.type = 'button'
+    newbtn.value = 'New Post'
+    buttonblock.appendChild(newbtn)
 }
 
 function startReply(id) {
