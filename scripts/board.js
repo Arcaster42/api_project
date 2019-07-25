@@ -110,8 +110,9 @@ function startPost() {
     hiddenauthor.setAttribute('name', 'author_hid')
     const topic = document.createElement('select')
     topic.className = 'post newtopic'
-    topic.options.add(new Option('Topic 1', 'Topic 1', true, true))
-    topic.options.add(new Option('Topic 2', 'Topic 2', false, false))
+    for (const element of topics) {
+        topic.options.add(new Option(element.topic, element.topic, false, false))
+    }
     const title = document.createElement('input')
     title.className = 'post newtitle'
     title.type = 'text'
