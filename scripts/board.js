@@ -1,17 +1,16 @@
-/* const moment = require('moment')
-const knex = require('../index')
-const db = knex.knex */
-
 let posts;
-fetch('/api/posts')
-.then((res) => {return res.json()})
-.then((data) => {posts = data})
-
 let replies;
-fetch('/api/replies')
-.then((res) => {return res.json()})
-.then((data) => {replies = data})
-.then(() => {appendPosts()})
+
+;(document.onload = function() {
+    fetch('/api/posts')
+    .then((res) => {return res.json()})
+    .then((data) => {posts = data})
+
+    fetch('/api/replies')
+    .then((res) => {return res.json()})
+    .then((data) => {replies = data})
+    .then(() => {appendPosts()})
+})()
 
 function refetch() {
     fetch('/api/posts')
