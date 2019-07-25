@@ -1,5 +1,6 @@
-let posts;
-let replies;
+let posts
+let replies
+let topics
 
 ;(document.onload = function() {
     fetch('/api/posts')
@@ -9,7 +10,12 @@ let replies;
         fetch('/api/replies')
         .then((res) => {return res.json()})
         .then((data) => {replies = data})
-        .then(() => {appendPosts()})
+        .then(() => {
+            fetch('/api/topics')
+            .then((res) => {return res.json()})
+            .then((data) => {topics = data})
+            .then(() => {appendPosts()})
+        })
     })
 })()
 
