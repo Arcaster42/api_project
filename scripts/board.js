@@ -41,7 +41,7 @@ function appendPosts() {
         postblock.className = `postblock ${post.id}`
         const title = document.createElement('h3')
         title.className = 'title'
-        title.innerText = post.title
+        title.innerText = `${post.title}  -  ${post.topic}`
         const author = document.createElement('p')
         author.className = 'author'
         author.innerText = post.author
@@ -116,6 +116,7 @@ function startPost() {
     for (const element of topics) {
         topic.options.add(new Option(element.topic, element.topic, false, false))
     }
+    topic.setAttribute('name', 'topic')
     const title = document.createElement('input')
     title.className = 'post newtitle'
     title.type = 'text'
@@ -132,7 +133,7 @@ function startPost() {
     submitbutton.className = 'btn post'
     submitbutton.value = 'Submit'
     submitbutton.type = 'button'
-    submitbutton.onclick = function() {submitPost('FIX ME', box.value)}
+    submitbutton.onclick = function() {submitPost('FIX ME', topic.value, box.value)}
     const cancelbutton = document.createElement('input')
     cancelbutton.className = 'btn post'
     cancelbutton.value = 'Cancel'
@@ -148,7 +149,8 @@ function startPost() {
     anchor.appendChild(postblock)
 }
 
-function submitPost(author, content) {
+function submitPost(author, topic, content) {
+    console.log(topic)
     const form = document.getElementById('postform')
     form.append('author', author)
     form.submit()
