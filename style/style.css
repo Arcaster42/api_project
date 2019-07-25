@@ -78,4 +78,6 @@ input:hover {
 
 .stamp {
     font-size: 80%;
+    margin: 0px;
+    padding: 2px;
 }
