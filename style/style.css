@@ -71,6 +71,18 @@ input:hover {
     width: 80%;
 }
 
+.post {
+    display: block;
+    margin: auto;
+    text-align: center;
+    width: 50%;
+}
+
+.newtitle, .newtopic {
+    margin-bottom: 6px;
+    margin-top: 6px;
+}
+
 .title, .author {
     margin: 0px;
     padding: 2px;
