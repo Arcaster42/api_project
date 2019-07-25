@@ -89,8 +89,8 @@ function appendReplies() {
 }
 
 function startPost() {
-    //closePost()
-    const anchor = document.getElementById('newbtndiv')
+    closePost()
+    const anchor = document.getElementById('newpostdiv')
     const postblock = document.createElement('form')
     postblock.className = 'post'
     postblock.id = 'postform'
@@ -103,24 +103,50 @@ function startPost() {
     hiddenauthor.value = 'FIX ME TO USERNAME'
     hiddenauthor.setAttribute('name', 'author_hid')
     const topic = document.createElement('select')
-    topic.className = 'post'
+    topic.className = 'post newtopic'
     topic.options.add(new Option('Topic 1', 'Topic 1', true, true))
     topic.options.add(new Option('Topic 2', 'Topic 2', false, false))
     const title = document.createElement('input')
-    title.className = 'post'
+    title.className = 'post newtitle'
     title.type = 'text'
     title.setAttribute('name', 'title')
     const box = document.createElement('textarea')
-    box.className = 'post'
+    box.className = 'post newtext'
     box.type = 'text'
     box.style.height = '50px'
     box.style.width = '400px'
     box.setAttribute('name', 'content')
+    const spacer = document.createElement('br')
+    spacer.className = 'post'
+    const submitbutton = document.createElement('input')
+    submitbutton.className = 'btn post'
+    submitbutton.value = 'Submit'
+    submitbutton.type = 'button'
+    submitbutton.onclick = function() {submitReply(id, 'FIX ME', box.value)}
+    const cancelbutton = document.createElement('input')
+    cancelbutton.className = 'btn post'
+    cancelbutton.value = 'Cancel'
+    cancelbutton.type = 'button'
+    cancelbutton.onclick = function() {closePost()}
     postblock.appendChild(hiddenauthor)
     postblock.appendChild(topic)
     postblock.appendChild(title)
     postblock.appendChild(box)
+    postblock.appendChild(spacer)
+    postblock.appendChild(submitbutton)
+    postblock.appendChild(cancelbutton)
     anchor.appendChild(postblock)
+}
+
+function submitPost(parent, author, content) {
+    const form = document.getElementById('postform')
+    form.append('author', author)
+    form.submit()
+}
+
+function closePost() {
+    const postelements = document.getElementsByClassName('post')
+    for (let element of postelements) element.parentNode.removeChild(element)
 }
 
 function startReply(id) {
