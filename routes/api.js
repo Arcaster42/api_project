@@ -21,4 +21,13 @@ router.get('/api/replies', (req, res) => {
     })
 })
 
+router.get('/api/topics', (req, res) => {
+    let result
+    db('topics')
+    .then((results) => {
+        result = JSON.stringify(results)
+        res.send(result)
+    })
+})
+
 module.exports = router
