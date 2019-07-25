@@ -4,10 +4,25 @@ const multer = require('multer')
 const upload = multer()
 const knex = require('../index')
 const db = knex.knex
+const moment = require('moment')
 
 router.post('/reply', upload.none(), (req, res) => {
-    console.log(req.body)
-    res.send(req.body.content)
+    const parent = req.body.parent_hid
+    const author = req.body.author_hid
+    const content = req.body.content
+    const stamp = moment().format('YYYY-MM-DD')
+    const time = moment().format('HH:MM A')
+    db('replies')
+    .insert({
+        parent: parent,
+        author: 'jsdev14',
+        content: content,
+        stamp: stamp,
+        time: time})
+    .then(() => {
+        console.log('inserted into DB')
+    })
+    res.send(`Parent: ${parent}, Author: ${author}, Content: ${content}`)
 })
 
 module.exports = router
