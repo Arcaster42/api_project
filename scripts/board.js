@@ -37,9 +37,9 @@ function appendPosts() {
         const content = document.createElement('p')
         content.className = 'content'
         content.innerText = post.content
-        const stamp = document.createElement('span')
+        const stamp = document.createElement('p')
         stamp.className = 'stamp'
-        //stamp.innerText = ``
+        stamp.innerText = `${post.time}  ${post.date}`
         const replybutton = document.createElement('input')
         replybutton.className = 'btn'
         replybutton.value = 'Reply'
@@ -49,6 +49,7 @@ function appendPosts() {
         replyzone.className = `replyzone ${post.id}`
         postblock.appendChild(title)
         postblock.appendChild(author)
+        postblock.appendChild(stamp)
         postblock.appendChild(content)
         postblock.appendChild(replybutton)
         postblock.appendChild(replyzone)
