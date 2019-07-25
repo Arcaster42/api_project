@@ -6,6 +6,7 @@ List of requirements by section and priority.
 ### Front-End
 * <span style="color:yellow">Limit posts on pages</span>
 * <span style="color:yellow">Additional styling</span>
+* <span style="color:yellow">Form validation</span>
 
 ### Back-End
 * <span style="color:red">Login system</span>
