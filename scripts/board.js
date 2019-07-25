@@ -84,7 +84,43 @@ function appendReplies() {
     newbtn.className = 'btn'
     newbtn.type = 'button'
     newbtn.value = 'New Post'
+    newbtn.onclick = function() {startPost()}
     buttonblock.appendChild(newbtn)
+}
+
+function startPost() {
+    //closePost()
+    const anchor = document.getElementById('newbtndiv')
+    const postblock = document.createElement('form')
+    postblock.className = 'post'
+    postblock.id = 'postform'
+    postblock.setAttribute('method', 'post')
+    postblock.setAttribute('action', '/post')
+    postblock.setAttribute('enctype', 'multipart/form-data')
+    const hiddenauthor = document.createElement('input')
+    hiddenauthor.classname = 'post'
+    hiddenauthor.type = 'hidden'
+    hiddenauthor.value = 'FIX ME TO USERNAME'
+    hiddenauthor.setAttribute('name', 'author_hid')
+    const topic = document.createElement('select')
+    topic.className = 'post'
+    topic.options.add(new Option('Topic 1', 'Topic 1', true, true))
+    topic.options.add(new Option('Topic 2', 'Topic 2', false, false))
+    const title = document.createElement('input')
+    title.className = 'post'
+    title.type = 'text'
+    title.setAttribute('name', 'title')
+    const box = document.createElement('textarea')
+    box.className = 'post'
+    box.type = 'text'
+    box.style.height = '50px'
+    box.style.width = '400px'
+    box.setAttribute('name', 'content')
+    postblock.appendChild(hiddenauthor)
+    postblock.appendChild(topic)
+    postblock.appendChild(title)
+    postblock.appendChild(box)
+    anchor.appendChild(postblock)
 }
 
 function startReply(id) {
