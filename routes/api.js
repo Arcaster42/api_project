@@ -37,6 +37,24 @@ router.get('/api/replies/:author', (req, res) => {
     })
 })
 
+router.get('/api/content/:author', (req, res) => {
+    let posts
+    let replies
+    db('posts')
+    .where({author: req.params.author})
+    .then((results) => {
+        posts = JSON.stringify(results)
+    })
+    .then(() => {
+        db('replies')
+        .where({author: req.params.author})
+        .then((results) => {
+            replies = JSON.stringify(results)
+            res.send(posts + replies)
+        })
+    })
+})
+
 router.get('/api/topics/', (req, res) => {
     db('topics')
     .then((results) => {
