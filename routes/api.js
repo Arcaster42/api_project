@@ -4,38 +4,43 @@ const knex = require('../index.js')
 const db = knex.knex
 
 router.get('/api/posts', (req, res) => {
-    let result
     db('posts')
     .then((results) => {
-        result = JSON.stringify(results)
+        let result = JSON.stringify(results)
         res.send(result)
     })
 })
 
 router.get('/api/replies', (req, res) => {
-    let result
     db('replies')
     .then((results) => {
-        result = JSON.stringify(results)
+        let result = JSON.stringify(results)
         res.send(result)
     })
 })
 
-router.get('/api/topics', (req, res) => {
-    let result
+router.get('/api/topics/', (req, res) => {
     db('topics')
     .then((results) => {
-        result = JSON.stringify(results)
+        let result = JSON.stringify(results)
+        res.send(result)
+    })
+})
+
+router.get('/api/topics/:name', (req, res) => {
+    db('topics')
+    .where({topic: req.params.name})
+    .then((results) => {
+        let result = JSON.stringify(results)
         res.send(result)
     })
 })
 
 router.get('/api/users', (req, res) => {
-    let result
     db('users')
     .select('username')
     .then((results) => {
-        result = JSON.stringify(results)
+        let result = JSON.stringify(results)
         res.send(result)
     })
 })
