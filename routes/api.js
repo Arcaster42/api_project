@@ -30,4 +30,14 @@ router.get('/api/topics', (req, res) => {
     })
 })
 
+router.get('/api/users', (req, res) => {
+    let result
+    db('users')
+    .select('username')
+    .then((results) => {
+        result = JSON.stringify(results)
+        res.send(result)
+    })
+})
+
 module.exports = router
