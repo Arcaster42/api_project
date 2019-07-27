@@ -36,6 +36,16 @@ exports.seed = function(knex) {
       ])
     })
     .then(() => {
-      return db('replies').insert()
+      return db('replies').insert([
+        {parent: 1, author: 'supercat7', 
+        content: 'You just need to run npm install express and then require express and invoke the function! Or somethign like that. Google it.', 
+        date_stamp: '2019-07-23', time_stamp: '9:43 AM'},
+        {parent: 1, author: 'randomcoder9', 
+        content: 'Only horrible, terrible people even use npm. Use yarn you cretin.', 
+        date_stamp: '2019-07-23', time_stamp: '11:52 AM'},
+        {parent: 2, author: 'jsdev14', 
+        content: 'CSS was made by the CIA in an experiment to see how much punishment a single human would bring upon themself. Back-end for life!', 
+        date_stamp: '2019-07-24', time_stamp: '1:32 PM'}
+      ])
     })
 };
