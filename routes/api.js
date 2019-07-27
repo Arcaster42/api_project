@@ -2,6 +2,7 @@ const express = require('express')
 const router = express()
 const knex = require('../index.js')
 const db = knex.knex
+const keys = require('../api_keys')
 
 router.get('/api/posts', (req, res) => {
     db('posts')
@@ -73,7 +74,11 @@ router.get('/api/topics/:name', (req, res) => {
 })
 
 router.get('/api/users', (req, res) => {
-    if (req.query.apikey === 'abcdefg123') {
+    let admin = false
+    for (const key of keys.adminKeys) {
+        if (key === req.query.apikey) admin = true
+    }
+    if (admin) {
         db('users')
         .select('username', 'email')
         .then((results) => {
