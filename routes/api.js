@@ -15,7 +15,7 @@ router.get('/api/posts/:author', (req, res) => {
     db('posts')
     .where({author: req.params.author})
     .then((results) => {
-        let result = JSON.stringify(results)
+        let result = JSON.stringify(results.reverse())
         res.send(result)
     })
 })
@@ -73,6 +73,14 @@ router.get('/api/topics/:name', (req, res) => {
 })
 
 router.get('/api/users', (req, res) => {
+    if (req.query.apikey === 'abcdefg123') {
+        db('users')
+        .select('username', 'email')
+        .then((results) => {
+            let result = JSON.stringify(results)
+            res.send(result)
+        })
+    } else
     db('users')
     .select('username')
     .then((results) => {
