@@ -1,8 +1,10 @@
+const knex = require('../index')
+const db = knex.knex
 
 exports.seed = function(knex) {
-  return knex('users').del()
+  return db('users').del()
     .then(() => {
-      return knex('users').insert([
+      return db('users').insert([
         {username: 'admin42', email: 'admin42@gmail.com', pw_hash: 'na', api_key: 'abcdefg123'},
         {username: 'jsdev14', email: 'jsdev14@gmail.com', pw_hash: 'na'},
         {username: 'supercat7', email: 'supercat7@gmail.com', pw_hash: 'na'},
@@ -11,7 +13,7 @@ exports.seed = function(knex) {
       ])
     })
     .then(() => {
-      return knex('topics').insert([
+      return db('topics').insert([
         {topic: 'Variables'},
         {topic: 'Functions'},
         {topic: 'HTML/CSS'},
@@ -21,7 +23,7 @@ exports.seed = function(knex) {
       ])
     })
     .then(() => {
-      return knex('posts').insert([
+      return db('posts').insert([
         {author: 'jsdev14', topic: 'Node/Express', title: 'Setting up Express', 
         content: 'Does anyone know how to set up an express server in node?', 
         date_stamp: '2019-07-22', time_stamp: '8:25 AM'},
@@ -32,5 +34,8 @@ exports.seed = function(knex) {
         content: 'Seriously, why is it called a boolean?', 
         date_stamp: '2019-07-23', time_stamp: '7:32 AM'}
       ])
+    })
+    .then(() => {
+      return db('replies').insert()
     })
 };
