@@ -7,7 +7,8 @@ const db = knex.knex
 const moment = require('moment')
 
 router.post('/post', upload.none(), (req, res) => {
-    const author = req.body.author_hid
+    const author = req.session.user
+    console.log(author)
     const topic = req.body.topic
     const title = req.body.title
     const content = req.body.content
@@ -15,12 +16,12 @@ router.post('/post', upload.none(), (req, res) => {
     const time = moment().format('HH:MM A')
     db('posts')
     .insert({
-        author: 'jsdev14',
+        author: author,
         topic: topic,
         title: title,
         content: content,
-        date: date,
-        time: time})
+        date_stamp: date,
+        time_stamp: time})
     .then(() => {
         console.log('inserted into DB')
     })
