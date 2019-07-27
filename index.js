@@ -7,13 +7,14 @@ const path = require('path')
 app.use('/', express.static(path.join(__dirname, '/')))
 
 //Modules
+require('dotenv').config()
 const knex = require('knex')({
     client: 'pg',
     connection: {
         host: '127.0.0.1',
-        user: 'postgres',
-        password: 'admin',
-        database: 'api_project',
+        user: process.env.DB_USER,
+        password: process.env.DB_PASS,
+        database: process.env.DB_NAME,
         port: 5432
     }
 })
