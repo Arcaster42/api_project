@@ -1,9 +1,11 @@
 --Insert users
 INSERT INTO users
 VALUES
+('admin42', 'admin42@gmail.com', 'na', 'abcdefg123'),
 ('jsdev14', 'jsdev14@gmail.com', 'na'),
 ('supercat7', 'supercat7@gmail.com', 'na'),
-('randomcoder9', 'randomcoder9@gmail.com', 'na');
+('randomcoder9', 'randomcoder9@gmail.com', 'na'),
+('danishbagel21', 'danishbagel21@gmail.com', 'na');
 
 --Insert topics
 INSERT INTO topics
@@ -11,7 +13,9 @@ VALUES
 ('Variables'),
 ('Functions'),
 ('HTML/CSS'),
-('Node/Express');
+('Node/Express'),
+('Database'),
+('API');
 
 --Insert posts
 INSERT INTO posts
