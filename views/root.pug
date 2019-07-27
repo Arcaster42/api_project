@@ -9,11 +9,11 @@ html
         form.login(action="/login" method="post" enctype="multipart/form-data")
             label(for="username") Username
             br
-            input(type="text")
+            input(type="text" name="username")
             br
             label(for="password") Password
             br
-            input(type="password")
+            input(type="password" name="password")
             br
             input.btn(type="submit" value="Login")
             br
