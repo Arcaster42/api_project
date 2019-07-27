@@ -1,6 +1,8 @@
 //Server Config
 const express = require('express')
+const session = require('express-session')
 const app = express()
+app.use(session({secret: 'nonsense', resave: false, saveUninitialized: false}))
 const port = process.env.PORT || 3000
 app.set('view engine', 'pug')
 const path = require('path')
@@ -24,6 +26,7 @@ module.exports = {knex}
 
 //Routes
 app.use(require('./routes/root'))
+app.use(require('./routes/login'))
 app.use(require('./routes/signup'))
 app.use(require('./routes/api'))
 app.use(require('./routes/board'))
