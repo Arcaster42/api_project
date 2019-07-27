@@ -5,6 +5,7 @@ const upload = multer()
 const knex = require('../index')
 const db = knex.knex;
 const bcrypt = require('bcrypt')
+const hat = require('hat')
 
 router.get('/signup', (req, res) => {
     res.render('signup')
@@ -23,6 +24,7 @@ router.post('/signup', upload.none(), (req, res) => {
                     username: username,
                     email: 'test@email.com',
                     pw_hash: hash,
+                    api_key: hat(),
                     can_put: true,
                     can_patch: true,
                     can_delete: true
