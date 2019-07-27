@@ -50,7 +50,7 @@ function appendPosts() {
         content.innerText = post.content
         const stamp = document.createElement('p')
         stamp.className = 'stamp'
-        stamp.innerText = `${post.time}  ${post.date}`
+        stamp.innerText = `${post.time_stamp}  ${post.date_stamp}`
         const replybutton = document.createElement('input')
         replybutton.className = 'btn'
         replybutton.value = 'Reply'
@@ -78,7 +78,7 @@ function appendReplies() {
         author.innerText = reply.author
         const stamp = document.createElement('span')
         stamp.className = 'stamp'
-        stamp.innerText = `${reply.time}   ${reply.date}`
+        stamp.innerText = `${reply.time_stamp}   ${reply.date_stamp}`
         const content = document.createElement('p')
         content.className = 'content'
         content.innerText = reply.content
@@ -106,11 +106,6 @@ function startPost() {
     postblock.setAttribute('method', 'post')
     postblock.setAttribute('action', '/post')
     postblock.setAttribute('enctype', 'multipart/form-data')
-    const hiddenauthor = document.createElement('input')
-    hiddenauthor.classname = 'post'
-    hiddenauthor.type = 'hidden'
-    hiddenauthor.value = 'FIX ME TO USERNAME'
-    hiddenauthor.setAttribute('name', 'author_hid')
     const topic = document.createElement('select')
     topic.className = 'post newtopic'
     for (const element of topics) {
@@ -139,7 +134,6 @@ function startPost() {
     cancelbutton.value = 'Cancel'
     cancelbutton.type = 'button'
     cancelbutton.onclick = function() {closePost()}
-    postblock.appendChild(hiddenauthor)
     postblock.appendChild(topic)
     postblock.appendChild(title)
     postblock.appendChild(box)
@@ -151,7 +145,6 @@ function startPost() {
 
 function submitPost(author, topic, content) {
     const form = document.getElementById('postform')
-    form.append('author', author)
     form.submit()
 }
 
@@ -174,11 +167,6 @@ function startReply(id) {
     hiddenparent.type = 'hidden'
     hiddenparent.value = id
     hiddenparent.setAttribute('name', 'parent_hid')
-    const hiddenauthor = document.createElement('input')
-    hiddenauthor.classname = 'reply'
-    hiddenauthor.type = 'hidden'
-    hiddenauthor.value = 'FIX ME TO USERNAME'
-    hiddenauthor.setAttribute('name', 'author_hid')
     const box = document.createElement('textarea')
     box.className = 'txt reply'
     box.type = 'text'
@@ -197,7 +185,6 @@ function startReply(id) {
     cancelbutton.value = 'Cancel'
     cancelbutton.type = 'button'
     cancelbutton.onclick = function() {closeReply()}
-    replyblock.appendChild(hiddenauthor)
     replyblock.appendChild(hiddenparent)
     replyblock.appendChild(box)
     replyblock.appendChild(spacer)
@@ -209,7 +196,6 @@ function startReply(id) {
 function submitReply(parent, author, content) {
     const form = document.getElementById('replyform')
     form.append('parent', parent)
-    form.append('author', author)
     form.submit()
 }
 
