@@ -1,12 +1,17 @@
 // Update with your config settings.
+require('dotenv').config({path: './'})
 
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: 'pg',
     connection: {
-      filename: './dev.sqlite3'
-    }
+      host: '127.0.0.1',
+      user: 'postgres',
+      password: 'admin',
+      database: 'api_project',
+      port: 5432
+  }
   },
 
   staging: {
@@ -28,9 +33,9 @@ module.exports = {
   production: {
     client: 'postgresql',
     connection: {
-      database: 'api_project',
-      user:     'arcaster',
-      password: 'admin'
+      database: 'my_db',
+      user:     'username',
+      password: 'password'
     },
     pool: {
       min: 2,
