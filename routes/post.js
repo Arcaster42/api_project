@@ -8,7 +8,6 @@ const moment = require('moment')
 
 router.post('/post', upload.none(), (req, res) => {
     const author = req.session.user
-    console.log(author)
     const topic = req.body.topic
     const title = req.body.title
     const content = req.body.content
