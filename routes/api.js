@@ -74,24 +74,30 @@ router.put('/api/posts', (req, res) => {
                 const date = moment().format('YYYY-MM-DD')
                 const time = moment().format('HH:MM A')
                 if (!id) res.sendStatus(400)
-                else if (post.author !== author) res.sendStatus(401)
-                else
                 db('posts')
                 .where({ id: id })
+                .select('author')
                 .then((query) => {
-                    if (query.length < 1) res.sendStatus(400)
-                    else {
-                        db('posts')
-                        .where({ id: id })
-                        .update({
-                            topic: topic,
-                            title: title,
-                            content: content
-                        })
-                    }
+                    post.author = query[0].author
+                    if (post.author !== author) res.sendStatus(401)
+                    else
+                    db('posts')
+                    .where({ id: id })
+                    .then((query) => {
+                        if (query.length < 1) res.sendStatus(400)
+                        else {
+                            db('posts')
+                            .where({ id: id })
+                            .update({
+                                topic: topic,
+                                title: title,
+                                content: content
+                            })
+                            .then(() => res.sendStatus(200))
+                            .catch((err) => res.send(err))
+                        }
+                    })
                 })
-                .then(() => res.sendStatus(200))
-                .catch((err) => res.send(err))
             }
         }
     })
