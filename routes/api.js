@@ -150,6 +150,46 @@ router.post('/api/replies', (req, res) => {
     })
 })
 
+router.put('/api/replies', (req, res) => {
+    const api = req.query.apikey
+    if (!api) res.sendStatus(401)
+    else
+    db('users')
+    .where({ api_key: api })
+    .select('username', 'can_put')
+    .then((query) => {
+        if (query.length < 1) res.sendStatus(401)
+        else {
+            const can_put = query[0].can_put
+            const author = query[0].username
+            if (!can_put) res.sendStatus(401)
+            else if (req.body.length > 1) res.sendStatus(400)
+            else {
+                const reply = req.body[0]
+                const id = reply.id
+                const content = reply.content
+                if (!id) res.sendStatus(400)
+                else if (reply.author !== author) res.sendStatus(401)
+                else
+                db('replies')
+                .where({ id: id })
+                .then((query) => {
+                    if (query.length < 1) res.sendStatus(400)
+                    else {
+                        db('replies')
+                        .where({ id: id })
+                        .update({
+                            content: content
+                        })
+                    }
+                })
+                .then(() => res.sendStatus(200))
+                .catch((err) => res.send(err))
+            }
+        }
+    })
+})
+
 router.get('/api/replies/:author', (req, res) => {
     db('replies')
     .where({author: req.params.author})
