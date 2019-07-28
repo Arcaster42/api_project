@@ -2,6 +2,8 @@
 const express = require('express')
 const session = require('express-session')
 const app = express()
+app.use(express.json())
+app.use(express.urlencoded())
 app.use(session({secret: 'nonsense', resave: false, saveUninitialized: false}))
 const port = process.env.PORT || 3000
 app.set('view engine', 'pug')
