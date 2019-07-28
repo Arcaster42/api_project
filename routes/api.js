@@ -68,6 +68,42 @@ router.get('/api/replies', (req, res) => {
     })
 })
 
+router.put('/api/replies', (req, res) => {
+    const api = req.query.apikey
+    if (!api) res.sendStatus(401)
+    else
+    db('users')
+    .where({ api_key: api })
+    .select('username', 'can_put')
+    .then((query) => {
+        if (query.length < 1) res.sendStatus(401)
+        else {
+            const can_put = query[0].can_put
+            const author = query[0].username
+            if (!can_put) res.sendStatus(401)
+            else if (req.body.length > 1) res.sendStatus(400)
+            else {
+                const post = req.body[0]
+                const parent = post.parent
+                const content = post.content
+                const date = moment().format('YYYY-MM-DD')
+                const time = moment().format('HH:MM A')
+                if (!parent || !content) res.sendStatus(400)
+                else
+                db('replies')
+                .insert({
+                    parent: parent,
+                    author: author,
+                    content: content,
+                    date_stamp: date,
+                    time_stamp: time})
+                .then(() => res.sendStatus(200))
+                .catch((err) => res.send(err))
+            }
+        }
+    })
+})
+
 router.get('/api/replies/:author', (req, res) => {
     db('replies')
     .where({author: req.params.author})
