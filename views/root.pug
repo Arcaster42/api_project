@@ -27,61 +27,73 @@ html
             table
                 tr
                     th Entity
+                    td Endpoint
                     th Method
                     th Parameters
                     th Info
                 tr
                     td Users
+                    td /api/users
                     td Get
                     td None
                     td Lists all usernames (e-mails if admin)
                 tr
                     td Topics
+                    td /api/topics
                     td Get
                     td :name
                     td Lists all topics or whether given topic exists
                 tr
                     td Content
+                    td /api/content
                     td Get
                     td :author (required)
                     td Lists all posts and replies by given user
                 tr
                     td Posts
+                    td /api/posts
                     td Get
                     td :author
                     td Lists all posts or posts by given user
                 tr
                     td Posts
+                    td /api/posts
                     td Post
                     td None
                     td Creates a new post; requires string properties 'topic', 'title', and 'content'
                 tr
                     td Posts
+                    td /api/posts
                     td Put
                     td None
                     td Modifies a post; requires integer 'id', string properties 'topic', 'title', 'content'
                 tr
                     td Posts
+                    td /api/posts
                     td Delete
                     td None
                     td Deletes a post; requires integer 'id'
                 tr
                     td Replies
+                    td /api/replies
                     td Get
                     td :author
                     td Lists all replies or replies by given user
                 tr
                     td Replies
+                    td /api/replies
                     td Post
                     td None
                     td Creates a new reply; requires number 'parent' and string 'content'
                 tr
                     td Replies
+                    td /api/replies
                     td Put
                     td None
                     td Modifies a reply; requires number 'id', string 'content'
                 tr
                     td Replies
+                    td /api/replies
                     td Delete
                     td None
                     td Deletes a reply; requires number 'id'
