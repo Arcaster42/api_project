@@ -109,19 +109,28 @@ router.delete('/api/posts', (req, res) => {
         else {
             const can_delete = query[0].can_delete
             const author = query[0].username
+            console.log(can_delete)
             if (!can_delete) res.sendStatus(401)
             else if (req.body.length > 1) res.sendStatus(400)
             else {
                 const post = req.body[0]
                 const id = post.id
-                if (!id) res.sendStatus(400)
-                else if (post.author !== author) res.sendStatus(401)
-                else
+                console.log(post)
+                console.log(post.author)
                 db('posts')
                 .where({ id: id })
-                .del()
-                .then(() => res.sendStatus(200))
-                .catch((err) => res.send(err))
+                .select('author')
+                .then((query) => {
+                    post.author = query[0].author
+                    if (!id) res.sendStatus(400)
+                    else if (post.author !== author) res.sendStatus(401)
+                    else
+                    db('posts')
+                    .where({ id: id })
+                    .del()
+                    .then(() => res.sendStatus(200))
+                    .catch((err) => res.send(err))
+                })
             }
         }
     })
