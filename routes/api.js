@@ -159,9 +159,9 @@ router.post('/api/replies', (req, res) => {
             if (!can_put) res.sendStatus(401)
             else if (req.body.length > 1) res.sendStatus(400)
             else {
-                const post = req.body[0]
-                const parent = post.parent
-                const content = post.content
+                const reply = req.body[0]
+                const parent = reply.parent
+                const content = reply.content
                 const date = moment().format('YYYY-MM-DD')
                 const time = moment().format('HH:MM A')
                 if (!parent || !content) res.sendStatus(400)
