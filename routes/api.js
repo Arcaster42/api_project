@@ -247,13 +247,20 @@ router.delete('/api/replies', (req, res) => {
                 const reply = req.body[0]
                 const id = reply.id
                 if (!id) res.sendStatus(400)
-                else if (reply.author !== author) res.sendStatus(401)
                 else
                 db('replies')
                 .where({ id: id })
-                .del()
-                .then(() => res.sendStatus(200))
-                .catch((err) => res.send(err))
+                .select('author')
+                .then((query) => {
+                    reply.author = query[0].author
+                    if (reply.author !== author) res.sendStatus(401)
+                    else
+                    db('replies')
+                    .where({ id: id })
+                    .del()
+                    .then(() => res.sendStatus(200))
+                    .catch((err) => res.send(err))
+                })
             }
         }
     })
