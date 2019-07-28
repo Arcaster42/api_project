@@ -98,3 +98,21 @@ input:hover {
     margin: auto;
     text-align: center;
 }
+
+.whitespace {
+    margin: 40px;
+    padding: 40px;
+    width: 100%;
+}
+
+.api-guide {
+    border: 2px solid black;
+    margin: auto;
+    text-align: center;
+    width: 50%;
+}
+
+th, td {
+    border-bottom: 1px solid black;
+    padding: 10px;
+}
