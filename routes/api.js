@@ -3,12 +3,51 @@ const router = express()
 const knex = require('../index.js')
 const db = knex.knex
 const keys = require('../api_keys')
+const moment = require('moment')
 
 router.get('/api/posts', (req, res) => {
     db('posts')
     .then((results) => {
         let result = JSON.stringify(results)
         res.send(result)
+    })
+})
+
+router.put('/api/posts', (req, res) => {
+    const api = req.query.apikey
+    if (!api) res.sendStatus(401)
+    else
+    db('users')
+    .where({ api_key: api })
+    .select('username', 'can_put')
+    .then((query) => {
+        if (query.length < 1) res.sendStatus(401)
+        else {
+            const can_put = query[0].can_put
+            const author = query[0].username
+            if (!can_put) res.sendStatus(401)
+            else if (req.body.length > 1) res.sendStatus(400)
+            else {
+                const post = req.body[0]
+                const topic = post.topic
+                const title = post.title
+                const content = post.content
+                const date = moment().format('YYYY-MM-DD')
+                const time = moment().format('HH:MM A')
+                if (!title || !content || !topic) res.sendStatus(400)
+                else
+                db('posts')
+                .insert({
+                    author: author,
+                    topic: topic,
+                    title: title,
+                    content: content,
+                    date_stamp: date,
+                    time_stamp: time})
+                .then(() => res.sendStatus(200))
+                .catch((err) => res.send(err))
+            }
+        }
     })
 })
 
