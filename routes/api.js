@@ -97,6 +97,36 @@ router.put('/api/posts', (req, res) => {
     })
 })
 
+router.delete('/api/posts', (req, res) => {
+    const api = req.query.apikey
+    if (!api) res.sendStatus(401)
+    else
+    db('users')
+    .where({ api_key: api })
+    .select('username', 'can_delete')
+    .then((query) => {
+        if (query.length < 1) res.sendStatus(401)
+        else {
+            const can_delete = query[0].can_delete
+            const author = query[0].username
+            if (!can_delete) res.sendStatus(401)
+            else if (req.body.length > 1) res.sendStatus(400)
+            else {
+                const post = req.body[0]
+                const id = post.id
+                if (!id) res.sendStatus(400)
+                else if (post.author !== author) res.sendStatus(401)
+                else
+                db('posts')
+                .where({ id: id })
+                .del()
+                .then(() => res.sendStatus(200))
+                .catch((err) => res.send(err))
+            }
+        }
+    })
+})
+
 router.get('/api/posts/:author', (req, res) => {
     db('posts')
     .where({author: req.params.author})
@@ -183,6 +213,36 @@ router.put('/api/replies', (req, res) => {
                         })
                     }
                 })
+                .then(() => res.sendStatus(200))
+                .catch((err) => res.send(err))
+            }
+        }
+    })
+})
+
+router.delete('/api/replies', (req, res) => {
+    const api = req.query.apikey
+    if (!api) res.sendStatus(401)
+    else
+    db('users')
+    .where({ api_key: api })
+    .select('username', 'can_delete')
+    .then((query) => {
+        if (query.length < 1) res.sendStatus(401)
+        else {
+            const can_delete = query[0].can_delete
+            const author = query[0].username
+            if (!can_delete) res.sendStatus(401)
+            else if (req.body.length > 1) res.sendStatus(400)
+            else {
+                const reply = req.body[0]
+                const id = reply.id
+                if (!id) res.sendStatus(400)
+                else if (reply.author !== author) res.sendStatus(401)
+                else
+                db('replies')
+                .where({ id: id })
+                .del()
                 .then(() => res.sendStatus(200))
                 .catch((err) => res.send(err))
             }
