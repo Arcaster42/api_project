@@ -18,3 +18,70 @@ html
             input.btn(type="submit" value="Login")
             br
             a(href="/signup") Create Account
+        .whitespace
+        .api-guide
+            h2 API
+            br
+            p All endpoints require an array of a single object containing the listed properties. Any GET method actions will not require an API key in the query, but other methods will require a listed API key to function. Any edits or deletes will require an API key that matches the author of the content to be edited or deleted.
+            br
+            table
+                tr
+                    th Entity
+                    th Method
+                    th Parameters
+                    th Info
+                tr
+                    td Users
+                    td Get
+                    td None
+                    td Lists all usernames (e-mails if admin)
+                tr
+                    td Topics
+                    td Get
+                    td :name
+                    td Lists all topics or whether given topic exists
+                tr
+                    td Content
+                    td Get
+                    td :author (required)
+                    td Lists all posts and replies by given user
+                tr
+                    td Posts
+                    td Get
+                    td :author
+                    td Lists all posts or posts by given user
+                tr
+                    td Posts
+                    td Post
+                    td None
+                    td Creates a new post; requires string properties 'topic', 'title', and 'content'
+                tr
+                    td Posts
+                    td Put
+                    td None
+                    td Modifies a post; requires integer 'id', string properties 'topic', 'title', 'content'
+                tr
+                    td Posts
+                    td Delete
+                    td None
+                    td Deletes a post; requires integer 'id'
+                tr
+                    td Replies
+                    td Get
+                    td :author
+                    td Lists all replies or replies by given user
+                tr
+                    td Replies
+                    td Post
+                    td None
+                    td Creates a new reply; requires number 'parent' and string 'content'
+                tr
+                    td Replies
+                    td Put
+                    td None
+                    td Modifies a reply; requires number 'id', string 'content'
+                tr
+                    td Replies
+                    td Delete
+                    td None
+                    td Deletes a reply; requires number 'id'
